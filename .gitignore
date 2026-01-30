@@ -1,0 +1,98 @@
+# =========================
+# .NET / ASP.NET Core
+# =========================
+bin/
+obj/
+out/
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa]ny [Cc]pu/
+[Ll]og/
+
+# ASP.NET Core
+appsettings.Development.json
+appsettings.Local.json
+
+# User secrets
+secrets.json
+*.usersecrets
+
+# =========================
+# Visual Studio
+# =========================
+.vs/
+*.user
+*.suo
+*.userprefs
+*.rsuser
+
+# Visual Studio cache
+*.cache
+*.log
+
+# =========================
+# VS Code
+# =========================
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# =========================
+# Rider / JetBrains
+# =========================
+.idea/
+*.sln.iml
+
+# =========================
+# NuGet
+# =========================
+packages/
+*.nupkg
+*.snupkg
+.nuget/
+
+# =========================
+# Test Results
+# =========================
+TestResults/
+coverage/
+coverage.cobertura.xml
+
+# =========================
+# Publish Output
+# =========================
+publish/
+wwwroot/lib/
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# =========================
+# Docker
+# =========================
+**/docker-compose.override.yml
+*.env
+
+# =========================
+# Others
+# =========================
+*.pdb
+*.tmp
+*.bak
+*.swp

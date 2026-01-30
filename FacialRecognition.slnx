@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="FacialRecognition.Application/FacialRecognition.Application.csproj" Id="d8f64673-752c-4f4a-9622-8fb7a696df6e" />
+  <Project Path="FacialRecognition.Common/FacialRecognition.Common.csproj" Id="dc854bb3-c64b-42ce-9118-10770feba090" />
+  <Project Path="FacialRecognition.Domain/FacialRecognition.Domain.csproj" Id="ffd2bc14-2b16-4457-9700-3c7cdee26604" />
+  <Project Path="FacialRecognition.Infrastructure/FacialRecognition.Infrastructure.csproj" Id="69baeb2b-2101-499a-aa29-0a104b89a4f2" />
+  <Project Path="FacialRecognition/FacialRecognition.API.csproj" />
+</Solution>

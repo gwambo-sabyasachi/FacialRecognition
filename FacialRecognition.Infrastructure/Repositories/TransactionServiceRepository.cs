@@ -51,9 +51,9 @@ namespace FacialRecognition.Infrastructure.Repositories
                 var url = $"{baseUrl}?key={apiKey}";
                 var payload = new
                 {
-                    starttime = startTime.ToString("yyyy-MM-dd HH:mm:ss"),
-                    endtime = endTime.ToString("yyyy-MM-dd HH:mm:ss"),
-                    sn = deviceSn
+                  starttime = startTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                  endtime = endTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                  sn = deviceSn
                 };
                 var json = JsonSerializer.Serialize(payload);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");

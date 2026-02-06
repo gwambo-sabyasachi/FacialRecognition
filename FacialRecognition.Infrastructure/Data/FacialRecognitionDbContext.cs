@@ -15,5 +15,8 @@ namespace FacialRecognition.Infrastructure.Data
             
         }
         public DbSet<FacialRecognitionLog> facialRecognitionLog { get; set; }
+        public DbSet<FacialRecognitionDevice> facialRecognitionDevices { get; set; }
+        public DbSet<CptAttendance> cptAttendances { get; set; }
+        public DbSet<CPT_UserShiftAllocationCal> cpt_UserShiftAllocationCals { get; set; }
     }
 }

@@ -9,5 +9,7 @@ namespace FacialRecognition.Domain.Interfaces
     public interface IFacialRecognition
     {
         FacialRecognitionLog GetStartDateFromLastTransaction();
+        FacialRecognitionLog GetFacialRecognitionLogByDeviceSN(string deviceSN);
+        string CreateFacialRecognitionLog(FacialRecognitionLog log);
     }
 }

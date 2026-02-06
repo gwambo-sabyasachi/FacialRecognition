@@ -14,12 +14,13 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<FacialRecognitionDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
 builder.Services.AddScoped<IFacialRecognition, FacialRecognitionRepository>();
 builder.Services.AddScoped<FacialRecognitionService>();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<ITransactionService, TransactionServiceServiceRepository>();
 builder.Services.AddScoped<TransactionServiceService>();
+builder.Services.AddScoped<IFacialRecognitionDevice, FacialRecognitionDeviceRepository>();
+builder.Services.AddScoped<IAttendanceRepository, AttendanceRepository>();
 
 
 var app = builder.Build();

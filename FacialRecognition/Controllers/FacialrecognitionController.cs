@@ -16,10 +16,12 @@ namespace FacialRecognition.Controllers
         private readonly HttpClient _httpClient;
         private readonly IConfiguration _configuration;
         private readonly TransactionServiceService _transactionService;
+       
         public FacialrecognitionController(FacialRecognitionService service, TransactionServiceService transactionService)
         {
             _service = service;
             _transactionService = transactionService;
+            
         }
 
         [HttpGet]
@@ -37,9 +39,8 @@ namespace FacialRecognition.Controllers
         [Route("api/Facialrecognition/GetLatestAttendanceRecord")]
         [AllowAnonymous]
         public async Task<IActionResult> GetLatestAttendanceRecord() {
-            var result = await _transactionService.GetTransactionsAsync();
-            return Ok(result);
-
+            await _transactionService.RunTransactionCronAsync();
+            return Ok("Transaction cron executed successfully"); 
         }
     }
 }

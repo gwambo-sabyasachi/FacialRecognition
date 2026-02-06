@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\TransactionWorker .cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FacialRecognition.Common\FacialRecognition.Common.csproj" />
     <ProjectReference Include="..\FacialRecognition.Domain\FacialRecognition.Domain.csproj" />
   </ItemGroup>

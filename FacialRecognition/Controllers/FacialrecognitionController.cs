@@ -38,9 +38,14 @@ namespace FacialRecognition.Controllers
         [Route("[action]")]
         [Route("api/Facialrecognition/GetLatestAttendanceRecord")]
         [AllowAnonymous]
-        public async Task<IActionResult> GetLatestAttendanceRecord() {
-            await _transactionService.RunTransactionCronAsync();
-            return Ok("Transaction cron executed successfully"); 
+        //public async Task<IActionResult> GetLatestAttendanceRecord() {
+        //    //await _transactionService.RunTransactionCronAsync();
+        //    return Ok("Transaction cron executed successfully"); 
+        //}
+        public async Task<IActionResult> GetLatestAttendanceRecord()
+        {
+            var message = await _transactionService.RunTransactionCronAsync();
+            return Ok(message);
         }
     }
 }

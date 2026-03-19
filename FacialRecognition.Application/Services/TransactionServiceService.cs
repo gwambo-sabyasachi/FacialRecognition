@@ -28,6 +28,8 @@ namespace FacialRecognition.Application.Services
             if (devices == null || devices.Count == 0)
                 return;
 
+
+
             foreach (var device in devices)
             {
                 if (string.IsNullOrEmpty(device.DeviceSN))
@@ -118,8 +120,7 @@ namespace FacialRecognition.Application.Services
                 foreach (var record in employee.Records)
                 {
                     DateTime punchTime = Convert.ToDateTime(record.checktime);
-                    var attendanceExists =
-                        _attendanceRepository.AttendanceExists(employee.UserId, punchTime);
+                    var attendanceExists = _attendanceRepository.AttendanceExists(employee.UserId, punchTime);
 
                     if (attendanceExists == null)
                     {

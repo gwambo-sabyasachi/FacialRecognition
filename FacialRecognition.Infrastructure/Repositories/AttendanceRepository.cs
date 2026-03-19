@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FacialRecognition.Infrastructure.Repositories
 {
@@ -19,14 +20,14 @@ namespace FacialRecognition.Infrastructure.Repositories
         {
             _context = context;
         }
-        public CptAttendance AttendanceExists(int pin, DateTime date)
+        public CptAttendance AttendanceExists(int pin, DateTime  date)
         {
             try
             {
                 CptAttendance attendance = new CptAttendance();
                 List<SqlParameter> lstParam = new List<SqlParameter>();
                 lstParam.Add(new SqlParameter("@UserId", pin));
-                lstParam.Add(new SqlParameter("@AttendanceDate", date));
+                lstParam.Add(new SqlParameter("@AttendanceDate", Convert.ToDateTime(date).ToString("yyyy-MM-dd")));
                 DataTable dt = FacialRecognitionCommonSql.ExecuteStoredProcedure("SP_ChkAttendanceExistsForApi", lstParam);
                 if(dt != null && dt.Rows.Count> 0)
                 {
@@ -74,11 +75,11 @@ namespace FacialRecognition.Infrastructure.Repositories
         public string InsertAttendance(CptAttendance attendance)
         {
             try
-            {
+            { 
                 List<SqlParameter> lstParam = new List<SqlParameter>();
                 lstParam.Add(new SqlParameter("@UserId", attendance.UserId));
-                lstParam.Add(new SqlParameter("@AttendanceDate", attendance.AttendanceDate));
-                lstParam.Add(new SqlParameter("@PunchIn", attendance.PunchIn));
+                lstParam.Add(new SqlParameter("@AttendanceDate", Convert.ToDateTime(attendance.AttendanceDate).ToString("yyyy-MM-dd")));
+                lstParam.Add(new SqlParameter("@PunchIn", Convert.ToDateTime(attendance.PunchIn).ToString("yyyy-MM-dd HH:mm")));
                 DataTable dt = FacialRecognitionCommonSql.ExecuteStoredProcedure("SP_InsertAttandanceDetails", lstParam);
                 if (dt != null && dt.Rows.Count > 0)
                 {
@@ -99,8 +100,8 @@ namespace FacialRecognition.Infrastructure.Repositories
             {
                 List<SqlParameter> lstParam = new List<SqlParameter>();
                 lstParam.Add(new SqlParameter("@UserId", attendance.UserId));
-                lstParam.Add(new SqlParameter("@AttendanceDate", attendance.AttendanceDate));
-                lstParam.Add(new SqlParameter("@PunchOut", attendance.PunchOut));
+                lstParam.Add(new SqlParameter("@AttendanceDate", Convert.ToDateTime(attendance.AttendanceDate).ToString("yyyy-MM-dd")));
+                lstParam.Add(new SqlParameter("@PunchOut", Convert.ToDateTime(attendance.PunchOut).ToString("yyyy-MM-dd HH:mm")));
                 DataTable dt = FacialRecognitionCommonSql.ExecuteStoredProcedure("SP_UpdatePunchOut", lstParam);
                 if(dt != null && dt.Rows.Count > 0)
                 {

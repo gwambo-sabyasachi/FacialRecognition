@@ -160,6 +160,7 @@ namespace FacialRecognition.Application.Services
 
         public async Task<string> GetTransactionsAsync(DateTime startDate, DateTime endDate, FacialRecognitionDevice device)
         {
+            
             try
             {
                 if (device == null)

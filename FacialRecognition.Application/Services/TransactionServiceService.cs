@@ -160,7 +160,7 @@ namespace FacialRecognition.Application.Services
 
         public async Task<string> GetTransactionsAsync(DateTime startDate, DateTime endDate, FacialRecognitionDevice device)
         {
-            
+
             try
             {
                 if (device == null)
@@ -247,6 +247,11 @@ namespace FacialRecognition.Application.Services
                 foreach (var record in employee.Records)
                 {
                     DateTime punchTime = Convert.ToDateTime(record.checktime);
+
+                    if (_attendanceRepository.IsDuplicatePunch(employee.UserId, punchTime))
+                    {
+                        continue;
+                    }  
                     var attendanceExists = _attendanceRepository.AttendanceExists(employee.UserId, punchTime);
 
                     if (attendanceExists == null)

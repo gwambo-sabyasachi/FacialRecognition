@@ -12,7 +12,8 @@ namespace FacialRecognition.Domain.Interfaces
         CptAttendance GetAttendanceOfLastDayWithoutAsync(int userId);
         public string InsertAttendance(CptAttendance attendance);
         public string UpdateAttendance(CptAttendance attendance);
-        
+        bool IsDuplicatePunch(int userId, DateTime punchTime);
+
 
     }
 }

@@ -79,7 +79,7 @@ namespace FacialRecognition.Infrastructure.Repositories
                 List<SqlParameter> lstParam = new List<SqlParameter>();
                 lstParam.Add(new SqlParameter("@UserId", attendance.UserId));
                 lstParam.Add(new SqlParameter("@AttendanceDate", Convert.ToDateTime(attendance.AttendanceDate).ToString("yyyy-MM-dd")));
-                lstParam.Add(new SqlParameter("@PunchIn", Convert.ToDateTime(attendance.PunchIn).ToString("yyyy-MM-dd HH:mm")));
+                lstParam.Add(new SqlParameter("@PunchIn", Convert.ToDateTime(attendance.PunchIn).ToString("yyyy-MM-dd HH:mm:ss")));
                 DataTable dt = FacialRecognitionCommonSql.ExecuteStoredProcedure("SP_InsertAttandanceDetails", lstParam);
                 if (dt != null && dt.Rows.Count > 0)
                 {
@@ -101,7 +101,7 @@ namespace FacialRecognition.Infrastructure.Repositories
                 List<SqlParameter> lstParam = new List<SqlParameter>();
                 lstParam.Add(new SqlParameter("@UserId", attendance.UserId));
                 lstParam.Add(new SqlParameter("@AttendanceDate", Convert.ToDateTime(attendance.AttendanceDate).ToString("yyyy-MM-dd")));
-                lstParam.Add(new SqlParameter("@PunchOut", Convert.ToDateTime(attendance.PunchOut).ToString("yyyy-MM-dd HH:mm")));
+                lstParam.Add(new SqlParameter("@PunchOut", Convert.ToDateTime(attendance.PunchOut).ToString("yyyy-MM-dd HH:mm:ss")));
                 DataTable dt = FacialRecognitionCommonSql.ExecuteStoredProcedure("SP_UpdatePunchOut", lstParam);
                 if(dt != null && dt.Rows.Count > 0)
                 {
@@ -113,6 +113,18 @@ namespace FacialRecognition.Infrastructure.Repositories
             {
                 return "";
             }
+        }
+        public bool IsDuplicatePunch(int userId, DateTime punchTime)
+        {
+            var startTime = punchTime.AddMinutes(-1);
+            var endTime = punchTime.AddMinutes(1);
+
+            return _context.cptAttendances.Any(x => x.UserId == userId &&
+                (
+                    (x.PunchIn.HasValue && x.PunchIn.Value >= startTime && x.PunchIn.Value <= endTime)
+                    ||
+                    (x.PunchOut.HasValue && x.PunchOut.Value >= startTime && x.PunchOut.Value <= endTime)
+                ));
         }
 
     }
